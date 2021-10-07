@@ -7,18 +7,9 @@ function App() {
       <button>Create task</button>
     </form>
     <ul>
-      <li>
-        <input checked="true" type="checkbox"/>
-        <span>Learn React</span>
-      </li>
-      <li>
-        <input type="checkbox"/>
-        <span>Learn Hooks</span>
-      </li>
-      <li>
-        <input type="checkbox"/>
-        <span>Learn Components</span>
-      </li>
+      <TaskItem isChecked={true} taskName="Learn React"/>
+      <TaskItem isChecked={false} taskName="Learn Hooks"/>
+      <TaskItem isChecked={false} taskName="Keep on Keeping on"/>
     </ul>
   </main>
 }
