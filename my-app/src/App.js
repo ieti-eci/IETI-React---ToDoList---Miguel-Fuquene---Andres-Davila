@@ -9,7 +9,7 @@ function App() {
     <ul>
       <TaskItem isChecked={true} taskName="Learn React"/>
       <TaskItem isChecked={false} taskName="Learn Hooks"/>
-      <TaskItem isChecked={false} taskName="Keep on Keeping on"/>
+      <TaskItem isChecked={true} taskName="Keep on Keeping on"/>
     </ul>
   </main>
 }
