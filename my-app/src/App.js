@@ -1,34 +1,46 @@
 import { TaskItem } from "./TaskItem";
+import { userState } from "react";
 
 function App() {
-
-  const handleTaskChange = () => 
-  {
-    console.log("changed!");
-  }
-  return <main>
+  const [tasks,setTasks] = userState([
+    {
+      isCompleted: true,
+      name: "Learn React",
+    },
+    {
+      isCompleted: false,
+      name: "Learn Hooks",
+    },
+    {
+      isCompleted: true,
+      name: "Keep on Keeping on",
+    }
+  ]);
+  const handleTaskChange =(index) => () => {
+    console.log("changed!"+ index);
+    const arr = [...tasks];
+    arr[index].isCompleted=!arr[index].isCompleted;
+    setTasks(arr);
+  };
+  return (
+  <main>
     <form>
       <input type="text" placeholder="Task Name"/>
       <button>Create task</button>
     </form>
     <ul>
-      <TaskItem 
-        isChecked={true} 
-        taskName="Learn React"
-        onTaskChange={handleTaskChange}
-      />
-      <TaskItem 
-        isChecked={false} 
-        taskName="Learn Hooks" 
-        onTaskChange={handleTaskChange} 
-      />
-      <TaskItem 
-        isChecked={false} 
-        taskName="Keep on Keeping on"
-        onTaskChange={handleTaskChange} 
-      />
+      {tasks.map((task,index) => {
+        return (
+          <TaskItem 
+            isChecked={task.isCompleted} 
+            taskName={task.name}
+            onTaskChange={handleTaskChange(index)}
+          />
+        );
+      })}
     </ul>
   </main>
+  );
 }
 
 export default App;
