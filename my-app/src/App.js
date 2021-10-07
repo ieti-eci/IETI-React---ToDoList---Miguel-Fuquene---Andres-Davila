@@ -1,8 +1,8 @@
 import { TaskItem } from "./TaskItem";
-import { userState } from "react";
+import { useState } from "react";
 
 function App() {
-  const [tasks,setTasks] = userState([
+  const [tasks,setTasks] = useState([
     {
       isCompleted: true,
       name: "Learn React",
@@ -16,16 +16,33 @@ function App() {
       name: "Keep on Keeping on",
     }
   ]);
+  const [textValue,setTextValue]= useState("");
+
   const handleTaskChange =(index) => () => {
     console.log("changed!"+ index);
     const arr = [...tasks];
     arr[index].isCompleted=!arr[index].isCompleted;
     setTasks(arr);
   };
+  const handleSubmit= (event) => {
+    event.preventDefault();
+    console.log(textValue);
+  };
+
+  const handleTextChange = (event) =>{
+    const value= event.target.value;
+    setTextValue(value);
+  }
+
   return (
   <main>
-    <form>
-      <input type="text" placeholder="Task Name"/>
+    <form onSubmit={handleSubmit}>
+      <input 
+        value={textValue} 
+        onChange={handleTextChange} 
+        type="text" 
+        placeholder="Task Name"
+      />
       <button>Create task</button>
     </form>
     <ul>
