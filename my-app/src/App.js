@@ -1,3 +1,4 @@
+import { TaskItem } from "./TaskItem";
 
 function App() {
   return <main>
